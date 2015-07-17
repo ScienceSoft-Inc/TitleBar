@@ -4,7 +4,7 @@ Customizable Xamarin.Forms title bar for Android, iOS and Windows Phone: place u
 
 View template in general
 ===========================================
-[back button] [2nd left button] [1st left button] [title] [1st right button] [2nd right button]
+[back button]     [2nd left button]     [1st left button]     [title]     [1st right button]     [2nd right button]
 
 Description of control
 ===========================================
@@ -20,7 +20,7 @@ Back button have returning logic in box.
 
 How to use this control in Xamarin.Forms app
 ===========================================
-Look sample to know how right include control menu in your application.
+Look sample to know how right include control in your application.
 
 If you want to have responsive buttons on tap then need add initialize renderers for each platform.
 
