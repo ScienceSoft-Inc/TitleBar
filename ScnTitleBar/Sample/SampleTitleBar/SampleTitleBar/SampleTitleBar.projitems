@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>af8bb2bd-e394-42b0-90ad-136e283ce4f9</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SampleTitleBar</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\FifthPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\FirstPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\FourthPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SecondPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ThirdPage.cs" />
+  </ItemGroup>
+</Project>
