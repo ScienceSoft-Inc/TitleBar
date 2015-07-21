@@ -7,16 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScnTitleBar", "ScnTitleBar\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{B93422EC-40A5-4683-A2C3-20262A478722}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{0AA36183-146C-4074-A0EB-1B08F5EF1B1C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScnGesture.Plugin", "ScnGesture.Plugin", "{98D03DEE-8337-4303-ADAF-111828BAABB9}"
-	ProjectSection(SolutionItems) = preProject
-		Extensions\ScnGesture.Plugin\ScnGesture.Plugin.dll = Extensions\ScnGesture.Plugin\ScnGesture.Plugin.dll
-		Extensions\ScnGesture.Plugin\ScnGesture.Plugin.Droid.dll = Extensions\ScnGesture.Plugin\ScnGesture.Plugin.Droid.dll
-		Extensions\ScnGesture.Plugin\ScnGesture.Plugin.iOS.dll = Extensions\ScnGesture.Plugin\ScnGesture.Plugin.iOS.dll
-		Extensions\ScnGesture.Plugin\ScnGesture.Plugin.WinPhone.dll = Extensions\ScnGesture.Plugin\ScnGesture.Plugin.WinPhone.dll
-	EndProjectSection
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SampleTitleBar", "Sample\SampleTitleBar\SampleTitleBar\SampleTitleBar.shproj", "{AF8BB2BD-E394-42B0-90AD-136E283CE4F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleTitleBar.WinPhone", "Sample\SampleTitleBar\SampleTitleBar.WinPhone\SampleTitleBar.WinPhone.csproj", "{0A847202-D44F-45EE-97FB-9DA5C38B189E}"
@@ -228,7 +218,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{98D03DEE-8337-4303-ADAF-111828BAABB9} = {0AA36183-146C-4074-A0EB-1B08F5EF1B1C}
 		{AF8BB2BD-E394-42B0-90AD-136E283CE4F9} = {B93422EC-40A5-4683-A2C3-20262A478722}
 		{0A847202-D44F-45EE-97FB-9DA5C38B189E} = {B93422EC-40A5-4683-A2C3-20262A478722}
 		{C81C985A-7DEF-4942-A333-D8650D9F3F5B} = {B93422EC-40A5-4683-A2C3-20262A478722}

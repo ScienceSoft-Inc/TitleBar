@@ -1,50 +1,27 @@
 ﻿using System;
 using Xamarin.Forms;
-using ScnGesture.Plugin.Forms;
+using ScnViewGestures.Plugin.Forms;
 
 namespace ScnTitleBar.Forms
 {
-    public class ImageButton : AbsoluteLayout
+    public class ImageButton : ViewGestures
     {
         public ImageButton()
         {
             BackgroundColor = Color.Transparent;
             
+            Tap += (s, e) => { OnClick(); };
+            TouchBegan += boxGesture_PressBegan;
+            TouchEnded += boxGesture_PressEnded;
+
             image = new Image();
-            SetLayoutFlags(image, AbsoluteLayoutFlags.PositionProportional);
-            SetLayoutBounds(image,
+            var contentLayout = new AbsoluteLayout();
+            AbsoluteLayout.SetLayoutFlags(image, AbsoluteLayoutFlags.PositionProportional);
+            AbsoluteLayout.SetLayoutBounds(image,
                 new Rectangle(0.5, 0.5, image.Width, image.Height)
             );
-            Children.Add(image);
-
-            var boxGesture = new BoxViewGesture(this);
-            SetLayoutFlags(boxGesture, AbsoluteLayoutFlags.PositionProportional);
-            SetLayoutBounds(boxGesture,
-                new Rectangle(0.5, 0.5, this.Width, this.Height)
-            );
-
-            boxGesture.Tap += (s, e) => { OnClick(); };
-            boxGesture.TapBegan += boxGesture_PressBegan;
-            boxGesture.TapEnded += boxGesture_PressEnded;
-            boxGesture.TapMoved += boxGesture_PressEnded;
-
-            boxGesture.LongTapEnded += boxGesture_PressEnded;
-            boxGesture.LongTapMoved += boxGesture_PressEnded;
-
-            boxGesture.SwipeEnded += boxGesture_PressEnded;
-
-            Children.Add(boxGesture);
-
-            if (Device.OS == TargetPlatform.WinPhone)
-            {
-                var tapGesture = new TapGestureRecognizer();
-                tapGesture.Tapped += (sender, e) =>
-                {
-                    OnClick();
-                };
-                GestureRecognizers.Add(tapGesture);
-                image.GestureRecognizers.Add(tapGesture);
-            }
+            contentLayout.Children.Add(image);
+            Content = contentLayout;
         }
 
         async void boxGesture_PressBegan(object sender, EventArgs e)

@@ -1,5 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
+using ScnViewGestures.Plugin.Forms;
 
 namespace ScnTitleBar.Forms
 {
@@ -156,6 +157,16 @@ namespace ScnTitleBar.Forms
             if ((barBtn & BarBtnEnum.bbRightRight) != 0)
                 stackRightBtn.Children.Add(BtnRightRight);
             #endregion
+
+            /*var viewGesture = new ViewGesture();
+            viewGesture.BackgroundColor = Color.Red;
+            viewGesture.Content = new BoxView
+            {
+                BackgroundColor = Color.Red,
+                HeightRequest = 50,
+                WidthRequest = 50,
+            };
+            stackRightBtn.Children.Add(viewGesture);*/
 
             AbsoluteLayout.SetLayoutFlags(appBar, AbsoluteLayoutFlags.All);
             AbsoluteLayout.SetLayoutBounds(appBar, new Rectangle(0f, 0f, 1f, 1f));

@@ -22,20 +22,20 @@ How to use this control in Xamarin.Forms app
 ===========================================
 Look sample to know how right include control in your application.
 
-If you want to have responsive buttons on tap then need add initialize renderers for each platform.
+If you want to have responsive buttons on tap then need to add initialize renderers for each platform.
 
 In iOS project just use
 ```cs
 Xamarin.Forms.Forms.Init ();
-BoxViewGestureRenderer.Init();
+ViewGesturesRenderer.Init();
 ```
 In Android project just use
 ```cs
 Xamarin.Forms.Forms.Init (this, bundle);
-BoxViewGestureRenderer.Init();
+ViewGesturesRenderer.Init();
 ```
-In WinPhone project just use (not finished yet)
+In WinPhone project just use
 ```cs
 Xamarin.Forms.Forms.Init ();
-BoxViewGestureRenderer.Init();
+ViewGesturesRenderer.Init();
 ```

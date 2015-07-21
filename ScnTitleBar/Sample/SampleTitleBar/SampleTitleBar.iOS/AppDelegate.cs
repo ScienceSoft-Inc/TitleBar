@@ -4,7 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
-using ScnGesture.Plugin.Forms.iOS.Renderers;
+using ScnViewGestures.Plugin.Forms.iOS.Renderers;
 
 namespace SampleTitleBar.iOS
 {
@@ -24,7 +24,7 @@ namespace SampleTitleBar.iOS
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
 			global::Xamarin.Forms.Forms.Init ();
-            BoxViewGestureRenderer.Init();
+            ViewGesturesRenderer.Init();
 
 			LoadApplication (new SampleTitleBar.App ());
 

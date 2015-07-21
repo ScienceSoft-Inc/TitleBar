@@ -21,7 +21,7 @@ namespace SampleTitleBar.Views
             titleBar.BtnRight.BackgroundColor = Color.Transparent;
             titleBar.BtnRight.Source = Device.OnPlatform("Icon/back.png", "ic_3.png", "Assets/Icon/3.png");
             titleBar.BtnRight.Click += async (s, e) => { await this.Navigation.PushAsync(new ThirdPage()); };
-
+           
             var stackLayout = new StackLayout
             {
                 BackgroundColor = Color.Yellow,

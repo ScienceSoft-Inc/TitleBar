@@ -168,11 +168,13 @@
       <HintPath>..\..\..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ScnGesture.Plugin">
-      <HintPath>..\..\..\Extensions\ScnGesture.Plugin\ScnGesture.Plugin.dll</HintPath>
+    <Reference Include="ScnViewGestures, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ScnViewGestures.Forms.1.0.1\lib\wp8\ScnViewGestures.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="ScnGesture.Plugin.WinPhone">
-      <HintPath>..\..\..\Extensions\ScnGesture.Plugin\ScnGesture.Plugin.WinPhone.dll</HintPath>
+    <Reference Include="ScnViewGestures.WinPhone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ScnViewGestures.Forms.1.0.1\lib\wp8\ScnViewGestures.WinPhone.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Xamarin.Forms.1.4.3.6376\lib\WP80\Xamarin.Forms.Core.dll</HintPath>

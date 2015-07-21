@@ -115,11 +115,13 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="ScnGesture.Plugin">
-      <HintPath>..\..\..\Extensions\ScnGesture.Plugin\ScnGesture.Plugin.dll</HintPath>
+    <Reference Include="ScnViewGestures, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ScnViewGestures.Forms.1.0.1\lib\Xamarin.iOS10\ScnViewGestures.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="ScnGesture.Plugin.iOS">
-      <HintPath>..\..\..\Extensions\ScnGesture.Plugin\ScnGesture.Plugin.iOS.dll</HintPath>
+    <Reference Include="ScnViewGestures.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ScnViewGestures.Forms.1.0.1\lib\Xamarin.iOS10\ScnViewGestures.iOS.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />

@@ -6,7 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using ScnGesture.Plugin.Forms.Droid.Renderers;
+using ScnViewGestures.Plugin.Forms.Droid.Renderers;
 
 namespace SampleTitleBar.Droid
 {
@@ -18,7 +18,7 @@ namespace SampleTitleBar.Droid
 			base.OnCreate (bundle);
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
-            BoxViewGestureRenderer.Init();
+            ViewGesturesRenderer.Init();
 
 			LoadApplication (new SampleTitleBar.App ());
 		}
