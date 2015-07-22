@@ -18,6 +18,12 @@ Set bar like you want. Setting up view nessasery buttons, icons for color
 Setting up view necessary buttons, icons, back color, title text and style.
 Back button have returning logic in box.
 
+Screenshots
+===========================================
+All screenshots are made on Android platform, but in other platforms they looks the same.
+
+![Main](Screenshots/Droid/SampleTitleBar.png)
+
 How to use this control in Xamarin.Forms app
 ===========================================
 Look sample to know how right include control in your application.
