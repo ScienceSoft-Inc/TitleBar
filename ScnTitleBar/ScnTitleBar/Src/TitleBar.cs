@@ -158,16 +158,6 @@ namespace ScnTitleBar.Forms
                 stackRightBtn.Children.Add(BtnRightRight);
             #endregion
 
-            /*var viewGesture = new ViewGesture();
-            viewGesture.BackgroundColor = Color.Red;
-            viewGesture.Content = new BoxView
-            {
-                BackgroundColor = Color.Red,
-                HeightRequest = 50,
-                WidthRequest = 50,
-            };
-            stackRightBtn.Children.Add(viewGesture);*/
-
             AbsoluteLayout.SetLayoutFlags(appBar, AbsoluteLayoutFlags.All);
             AbsoluteLayout.SetLayoutBounds(appBar, new Rectangle(0f, 0f, 1f, 1f));
             Children.Add(appBar);
@@ -233,13 +223,13 @@ namespace ScnTitleBar.Forms
             {
                 curPage = page;
             }
-            async public override void OnClick()
+            public override void OnClick()
             {
                 base.OnClick();
-                
+
                 if (curPage.Navigation.NavigationStack.Count > 0)
-                    await curPage.Navigation.PopAsync(true);
-            } 
+                    curPage.Navigation.PopAsync(true);
+            }
         }
     }
 }

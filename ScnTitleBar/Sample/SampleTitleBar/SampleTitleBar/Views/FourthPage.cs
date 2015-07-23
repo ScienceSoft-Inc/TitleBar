@@ -14,7 +14,7 @@ namespace SampleTitleBar.Views
             titleBar.BarColor = Color.Gray;
             titleBar.Title = "FOURTH";
 
-            titleBar.BtnBack.BackgroundColor = Color.Transparent;
+            titleBar.BtnBack.Content.BackgroundColor = Color.Transparent;
             titleBar.BtnBack.Source = Device.OnPlatform("Icon/back.png", "ic_back.png", "Assets/Icon/back.png");
 
             var stackLayout = new StackLayout

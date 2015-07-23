@@ -18,7 +18,7 @@ namespace ScnTitleBar.Forms
             var contentLayout = new AbsoluteLayout();
             AbsoluteLayout.SetLayoutFlags(image, AbsoluteLayoutFlags.PositionProportional);
             AbsoluteLayout.SetLayoutBounds(image,
-                new Rectangle(0.5, 0.5, image.Width, image.Height)
+                new Rectangle(0.5, 0.5, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize)
             );
             contentLayout.Children.Add(image);
             Content = contentLayout;

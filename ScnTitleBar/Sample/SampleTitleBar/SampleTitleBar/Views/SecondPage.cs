@@ -14,18 +14,18 @@ namespace SampleTitleBar.Views
             titleBar.BarColor = Color.Gray;
             titleBar.Title = "SECOND";
 
-            titleBar.BtnBack.BackgroundColor = Color.Transparent;
+            titleBar.BtnBack.Content.BackgroundColor = Color.Transparent;
             titleBar.BtnBack.Source = Device.OnPlatform("Icon/back.png", "ic_back.png", "Assets/Icon/back.png");
 
-            titleBar.BtnLeft.BackgroundColor = Color.Transparent;
+            titleBar.BtnLeft.Content.BackgroundColor = Color.Transparent;
             titleBar.BtnLeft.Source = Device.OnPlatform("Icon/3.png", "ic_3.png", "Assets/Icon/3.png");
             titleBar.BtnLeft.Click += (s, e) => { this.Navigation.PushAsync(new ThirdPage()); };
 
-            titleBar.BtnRight.BackgroundColor = Color.Transparent;
+            titleBar.BtnRight.Content.BackgroundColor = Color.Transparent;
             titleBar.BtnRight.Source = Device.OnPlatform("Icon/4.png", "ic_4.png", "Assets/Icon/4.png");
             titleBar.BtnRight.Click += (s, e) => { this.Navigation.PushAsync(new FourthPage()); };
 
-            titleBar.BtnRightRight.BackgroundColor = Color.Transparent;
+            titleBar.BtnRightRight.Content.BackgroundColor = Color.Transparent;
             titleBar.BtnRightRight.Source = Device.OnPlatform("Icon/5.png", "ic_5.png", "Assets/Icon/5.png");
             titleBar.BtnRightRight.Click += (s, e) => { this.Navigation.PushAsync(new FifthPage()); };
 

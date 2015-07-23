@@ -14,12 +14,12 @@ namespace SampleTitleBar.Views
             titleBar.BarColor = Color.Gray;
             titleBar.Title = "FIRST";
 
-            titleBar.BtnLeft.BackgroundColor = Color.Transparent;
-            titleBar.BtnLeft.Source = Device.OnPlatform("Icon/back.png", "ic_2.png", "Assets/Icon/2.png");
+            titleBar.BtnLeft.Content.BackgroundColor = Color.Transparent;
+            titleBar.BtnLeft.Source = Device.OnPlatform("Icon/2.png", "ic_2.png", "Assets/Icon/2.png");
             titleBar.BtnLeft.Click += async (s, e) => { await this.Navigation.PushAsync(new SecondPage()); };
 
-            titleBar.BtnRight.BackgroundColor = Color.Transparent;
-            titleBar.BtnRight.Source = Device.OnPlatform("Icon/back.png", "ic_3.png", "Assets/Icon/3.png");
+            titleBar.BtnRight.Content.BackgroundColor = Color.Transparent;
+            titleBar.BtnRight.Source = Device.OnPlatform("Icon/3.png", "ic_3.png", "Assets/Icon/3.png");
             titleBar.BtnRight.Click += async (s, e) => { await this.Navigation.PushAsync(new ThirdPage()); };
            
             var stackLayout = new StackLayout
