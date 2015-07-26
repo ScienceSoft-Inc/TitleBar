@@ -24,6 +24,44 @@ namespace ScnTitleBar.Forms
             Content = contentLayout;
         }
 
+        public new Color BackgroundColor
+        {
+            get 
+            {
+                return base.BackgroundColor;
+            }
+
+            set 
+            {
+                base.BackgroundColor = value;
+
+                if (Device.OS != TargetPlatform.Android)
+                {
+                    if (Content != null)
+                        Content.BackgroundColor = value;
+                }
+            }
+        }
+
+        public new double Opacity
+        {
+            get
+            {
+                return base.Opacity;
+            }
+
+            set
+            {
+                if (Device.OS != TargetPlatform.Android)
+                {
+                    if (Content != null)
+                        Content.Opacity = value;
+                }
+                else
+                    base.Opacity = value;
+            }
+        }
+
         async void boxGesture_PressBegan(object sender, EventArgs e)
         {
             await this.ScaleTo(0.9, 100, Easing.CubicOut);
