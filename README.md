@@ -21,8 +21,13 @@ Back button have returning logic in box.
 Screenshots
 ===========================================
 All screenshots are made on Android platform, but in other platforms they looks the same.
-
+Bellow is shown schematic representation without any stylizing.
 ![Main](Screenshots/Droid/SampleTitleBar.png)
+
+Bellow is shown screenshots from real application.
+You can find sources of this application here: https://github.com/ScienceSoft-Inc/XamarinDiscountsApp.
+![Main](Screenshots/Droid/DiscountsAppTitleBar.png)
+
 
 How to use this control in Xamarin.Forms app
 ===========================================
