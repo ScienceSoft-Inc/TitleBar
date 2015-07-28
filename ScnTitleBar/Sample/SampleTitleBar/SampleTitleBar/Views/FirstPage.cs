@@ -14,7 +14,7 @@ namespace SampleTitleBar.Views
             titleBar.BarColor = Color.Gray;
             titleBar.Title = "FIRST";
 
-            titleBar.BtnLeft.BackgroundColor = Color.Red;
+            titleBar.BtnLeft.BackgroundColor = Color.Transparent;
             titleBar.BtnLeft.Source = Device.OnPlatform("Icon/2.png", "ic_2.png", "Assets/Icon/2.png");
             titleBar.BtnLeft.Click += async (s, e) => { await this.Navigation.PushAsync(new SecondPage()); };
 
