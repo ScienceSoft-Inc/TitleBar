@@ -2,35 +2,33 @@ ScnTitleBar
 ======================
 Customizable Xamarin.Forms title bar for Android, iOS and Windows Phone: place up to 5 buttons inside it and position/paint the bar as you want.
 
-View template in general
+Title Bar Control Structure
 ===========================================
-[back button]     [2nd left button]     [1st left button]     [title]     [1st right button]     [2nd right button]
+The control may have the following items:
+- Back button
+- 1st left button
+- 2nd left button
+- Title
+- 1st right button
+- 2nd right button
+ 
+You can put control in any place on a page and choose which items (out of the above list) to show. You may change icons, colors, title text and it's style. The "Back" button implements standard navigation action of each platform.
 
-Description of control
-===========================================
-ScnTitleBar constuctor includes three parameters:
-- owner page;
-- kind of view buttons;
-- control alignment (only for renderer not for location on page).
-You can situate control in any place on page. For better render control set property
+See schemas bellow:
 
-Set bar like you want. Setting up view nessasery buttons, icons for color
-Setting up view necessary buttons, icons, back color, title text and style.
-Back button have returning logic in box.
-
-Screenshots
-===========================================
-All screenshots are made on Android platform, but in other platforms they looks the same.
-Bellow is shown schematic representation without any stylizing.
 ![Main](Screenshots/Droid/SampleTitleBar.png)
 
 Bellow is shown screenshots from real application.
 You can find sources of this application here: https://github.com/ScienceSoft-Inc/XamarinDiscountsApp.
 ![Main](Screenshots/Droid/DiscountsAppTitleBar.png)
 
-
 How to use this control in Xamarin.Forms app
 ===========================================
+ScnTitleBar constuctor includes three parameters:
+- Owner page;
+- Kind of view buttons;
+- Control alignment (only for renderer not for location on a page).
+
 Look sample to know how right include control in your application.
 
 If you want to have responsive buttons on tap then need to add initialize renderers for each platform.
