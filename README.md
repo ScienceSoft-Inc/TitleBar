@@ -18,32 +18,31 @@ See schemas bellow:
 
 ![Main](Screenshots/Droid/SampleTitleBar.png)
 
-Bellow is shown screenshots from real application.
-You can find sources of this application here: https://github.com/ScienceSoft-Inc/XamarinDiscountsApp.
+Bellow you may see screenshots of a real application using the control (you can find sources of this application at https://github.com/ScienceSoft-Inc/XamarinDiscountsApp):
 ![Main](Screenshots/Droid/DiscountsAppTitleBar.png)
 
 How to use this control in Xamarin.Forms app
 ===========================================
-ScnTitleBar constuctor includes three parameters:
+ Please pay attention that ScnTitleBar constuctor includes three parameters:
 - Owner page;
 - Kind of view buttons;
-- Control alignment (only for renderer not for location on a page).
+- Control alignment - to be used only for renderer not for location on a page.
 
-Look sample to know how right include control in your application.
+You may find sample code of contral usage here: https://github.com/ScienceSoft-Inc/TitleBar/tree/master/ScnTitleBar/Sample/SampleTitleBar
 
-If you want to have responsive buttons on tap then need to add initialize renderers for each platform.
+As well mind that if you want to have responsive buttons (vibrating on tap) then you need to initialize renderers for each platform.
 
-In iOS project just use
+iOS:
 ```cs
 Xamarin.Forms.Forms.Init ();
 ViewGesturesRenderer.Init();
 ```
-In Android project just use
+Android:
 ```cs
 Xamarin.Forms.Forms.Init (this, bundle);
 ViewGesturesRenderer.Init();
 ```
-In WinPhone project just use
+WinPhone:
 ```cs
 Xamarin.Forms.Forms.Init ();
 ViewGesturesRenderer.Init();
