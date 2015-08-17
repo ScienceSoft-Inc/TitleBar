@@ -190,17 +190,14 @@ namespace ScnTitleBar.Forms
         }
         #endregion
 
-        #region Title label
-        private Label txtTitle;
-        private string title = "";
+        #region Title
+        public static readonly BindableProperty TitleProperty =
+            BindableProperty.Create<TitleBar, string>(p => p.Title, "");
+
         public string Title
         {
-            get { return title; }
-            set
-            {
-                title = value;
-                txtTitle.Text = title;
-            }
+            get { return (string)GetValue(TitleProperty); }
+            set { SetValue(TitleProperty, value); }
         }
 
         public Style TitleStyle
@@ -210,6 +207,19 @@ namespace ScnTitleBar.Forms
         }
         #endregion
 
+        protected override void OnPropertyChanged(string propertyName)
+        {
+            base.OnPropertyChanged(propertyName);
+
+            switch (propertyName)
+            {
+                case "Title":
+                    txtTitle.Text = Title;
+                    break;
+            }
+        }
+
+        private Label txtTitle;
         public ImageButton BtnBack { get; private set; }
         public ImageButton BtnRight { get;  private set; }
         public ImageButton BtnRightRight { get; private set; }
