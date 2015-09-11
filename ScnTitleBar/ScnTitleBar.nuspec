@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>ScnTitleBar.Forms</id>
-    <version>1.0.7</version>
+    <version>1.0.10</version>
     <authors>ScienceSoft</authors>
     <owners>ScienceSoft</owners>
     <projectUrl>https://github.com/ScienceSoft-Inc/TitleBar</projectUrl>
@@ -12,7 +12,7 @@
     <tags>title bar, app bar, xamarin, windows phone, winphone, wp8, android, xamarin.forms, ios</tags>
     <dependencies>
       <dependency id="Xamarin.Forms" version="1.4.3.6376" />
-      <dependency id="ScnViewGestures.Forms" version="1.0.1" />
+      <dependency id="ScnViewGestures.Forms" version="1.2.0" />
     </dependencies>
   </metadata>
   <files>
