@@ -6,21 +6,24 @@ namespace ScnTitleBar.Forms
 {
     public class ImageButton : ViewGestures
     {
+        private readonly Image _image;
+
         public ImageButton()
         {
             BackgroundColor = Color.Transparent;
             
-            Tap += (s, e) => { OnClick(); };
-            TouchBegan += boxGesture_PressBegan;
-            TouchEnded += boxGesture_PressEnded;
+            Tap += (s, e) => OnClick();
+            TouchBegan += BoxGesture_PressBegan;
+            TouchEnded += BoxGesture_PressEnded;
 
-            image = new Image();
+            _image = new Image();
+            AbsoluteLayout.SetLayoutFlags(_image, AbsoluteLayoutFlags.PositionProportional);
+            AbsoluteLayout.SetLayoutBounds(_image,
+                new Rectangle(0.5, 0.5, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
+
             var contentLayout = new AbsoluteLayout();
-            AbsoluteLayout.SetLayoutFlags(image, AbsoluteLayoutFlags.PositionProportional);
-            AbsoluteLayout.SetLayoutBounds(image,
-                new Rectangle(0.5, 0.5, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize)
-            );
-            contentLayout.Children.Add(image);
+            contentLayout.Children.Add(_image);
+
             Content = contentLayout;
         }
 
@@ -30,7 +33,6 @@ namespace ScnTitleBar.Forms
             {
                 return base.BackgroundColor;
             }
-
             set 
             {
                 base.BackgroundColor = value;
@@ -49,7 +51,6 @@ namespace ScnTitleBar.Forms
             {
                 return base.Opacity;
             }
-
             set
             {
                 if (Device.OS != TargetPlatform.Android)
@@ -62,27 +63,38 @@ namespace ScnTitleBar.Forms
             }
         }
 
-        async void boxGesture_PressBegan(object sender, EventArgs e)
+        private async void BoxGesture_PressBegan(object sender, EventArgs e)
         {
             await this.ScaleTo(0.9, 100, Easing.CubicOut);
         }
 
-        async void boxGesture_PressEnded(object sender, EventArgs e)
+        private async void BoxGesture_PressEnded(object sender, EventArgs e)
         {
             await this.ScaleTo(1, 100, Easing.CubicOut);
         }
 
-        private Image image;
+        public static readonly BindableProperty SourceProperty =
+            BindableProperty.Create<ImageButton, ImageSource>(i => i.Source, null,
+                propertyChanged: SourcePropertyChanged);
+
         public ImageSource Source
         {
-            get { return image.Source; }
-            set { image.Source = value; }
+            get { return (ImageSource) GetValue(SourceProperty); }
+            set { SetValue(SourceProperty, value); }
+        }
+
+        private static void SourcePropertyChanged(BindableObject bindable, ImageSource oldvalue, ImageSource newvalue)
+        {
+            var origin = (ImageButton) bindable;
+            origin._image.Source = newvalue;
         }
 
         public event EventHandler Click;
+
         public virtual void OnClick()
         {
-            if (Click != null) Click(this, EventArgs.Empty);
+            if (Click != null)
+                Click(this, EventArgs.Empty);
         }
     }
 }
