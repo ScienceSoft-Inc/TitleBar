@@ -2,30 +2,27 @@
 <package >
   <metadata>
     <id>ScnTitleBar.Forms</id>
-    <version>1.0.12</version>
+    <version>1.1.0</version>
     <authors>ScienceSoft</authors>
     <owners>ScienceSoft</owners>
     <projectUrl>https://github.com/ScienceSoft-Inc/TitleBar</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Customizable Xamarin.Forms title bar for Android, iOS and Windows Phone: place up to 5 buttons inside it and position/paint the bar as you want.</description>
+    <description>Customizable Xamarin.Forms title bar for Android &amp; iOS: place up to 5 buttons inside it and position/paint the bar as you want.</description>
     <copyright>ScienceSoft inc.</copyright>
-    <tags>title bar, app bar, xamarin, windows phone, winphone, wp8, android, xamarin.forms, ios</tags>
+    <tags>title bar, app bar, xamarin, xamarin.forms, android, ios</tags>
     <dependencies>
-      <dependency id="Xamarin.Forms" version="1.4.3.6376" />
-      <dependency id="ScnViewGestures.Forms" version="1.2.0" />
+      <dependency id="Xamarin.Forms" version="3.0.0.0" />
+      <dependency id="ScnViewGestures.Forms" version="1.4.0" />
     </dependencies>
   </metadata>
   <files>
     <!-- PCL -->
-    <file src="ScnTitleBar\bin\Release\ScnTitleBar.dll"            target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\ScnTitleBar.dll" />
-
+    <file src="ScnTitleBar\bin\Release\ScnTitleBar.dll" target="lib\portable-net45+win8+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\ScnTitleBar.dll" />
+	
     <!--iOS-->
-    <file src="ScnTitleBar\bin\Release\ScnTitleBar.dll"                target="lib\Xamarin.iOS10\ScnTitleBar.dll" />
-
+    <file src="ScnTitleBar\bin\Release\ScnTitleBar.dll" target="lib\Xamarin.iOS10\ScnTitleBar.dll" />
+	
     <!--Android-->
-    <file src="ScnTitleBar\bin\Release\ScnTitleBar.dll"                  target="lib\MonoAndroid10\ScnTitleBar.dll" />
-
-    <!--WP-->
-    <file src="ScnTitleBar\bin\Release\ScnTitleBar.dll"                     target="lib\wp8\ScnTitleBar.dll" />
+    <file src="ScnTitleBar\bin\Release\ScnTitleBar.dll" target="lib\MonoAndroid10\ScnTitleBar.dll" />
   </files>
 </package>

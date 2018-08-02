@@ -1,6 +1,6 @@
 ScnTitleBar
 ======================
-Customizable Xamarin.Forms title bar for Android, iOS and Windows Phone: place up to 5 buttons inside it and position/paint the bar as you want.
+Customizable Xamarin.Forms title bar for Android & iOS: place up to 5 buttons inside it and position/paint the bar as you want.
 
 Title Bar Control Structure
 ===========================================
@@ -40,10 +40,5 @@ ViewGesturesRenderer.Init();
 Android:
 ```cs
 Xamarin.Forms.Forms.Init (this, bundle);
-ViewGesturesRenderer.Init();
-```
-WinPhone:
-```cs
-Xamarin.Forms.Forms.Init ();
 ViewGesturesRenderer.Init();
 ```
