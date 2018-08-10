@@ -3,12 +3,35 @@ using Xamarin.Forms;
 
 namespace ScnTitleBar.Forms
 {
-    public class ImageButton : Image
+    public class ImageButton : ContentView
     {
+        public static readonly BindableProperty SourceProperty = BindableProperty.Create(nameof(Source),
+            typeof(ImageSource), typeof(ImageButton), propertyChanged: SourcePropertyChanged);
+
+        public static readonly BindableProperty ImageScaleProperty = BindableProperty.Create(nameof(ImageScale),
+            typeof(double), typeof(ImageButton), 0.7, propertyChanged: ImageScalePropertyChanged);
+
+        public ImageSource Source
+        {
+            get => (ImageSource) GetValue(SourceProperty);
+            set => SetValue(SourceProperty, value);
+        }
+
+        public double ImageScale
+        {
+            get => (double) GetValue(ImageScaleProperty);
+            set => SetValue(ImageScaleProperty, value);
+        }
+
+        protected Image Image { get; set; }
+
         public ImageButton()
         {
-            BackgroundColor = Color.Transparent;
-            
+            Image = new Image
+            {
+                Scale = ImageScale
+            };
+
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += async (sender, args) =>
             {
@@ -20,6 +43,20 @@ namespace ScnTitleBar.Forms
             };
 
             GestureRecognizers.Add(tapGestureRecognizer);
+
+            Content = Image;
+        }
+
+        private static void SourcePropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
+        {
+            var origin = (ImageButton) bindable;
+            origin.Image.Source = (ImageSource) newvalue;
+        }
+
+        private static void ImageScalePropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
+        {
+            var origin = (ImageButton) bindable;
+            origin.Image.Scale = (double) newvalue;
         }
 
         public event EventHandler Click;

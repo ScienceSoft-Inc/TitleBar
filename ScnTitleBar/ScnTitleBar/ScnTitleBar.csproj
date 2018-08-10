@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Src\BackImageButton.cs" />
     <Compile Include="Src\ImageButton.cs" />
     <Compile Include="Src\TitleBar.cs" />
   </ItemGroup>
