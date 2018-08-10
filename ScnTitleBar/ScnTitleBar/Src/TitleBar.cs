@@ -1,18 +1,10 @@
 ﻿using System;
 using Xamarin.Forms;
-using ScnViewGestures.Plugin.Forms;
 
 namespace ScnTitleBar.Forms
 {
     public class TitleBar : AbsoluteLayout 
     {
-        /* Bar template 
-         * 
-         * [BtnBack] [BtnLeftLeft] [BtnLeft] [TITLE] [BtnRight] [BtnRightRight]
-         * 
-        */
-
-
         [Flags]
         public enum BarBtnEnum
         {
@@ -47,55 +39,64 @@ namespace ScnTitleBar.Forms
             baBottom = 1
         }
 
-        public int HeightBar = Device.OnPlatform(48, 48, 64);
-        private int PaddingBar = 0;
+        public int HeightBar = 48;
+
+        protected readonly int PaddingBar;
+        protected readonly AbsoluteLayout AppBar;
+        protected readonly Label TxtTitle;
+
+        public ImageButton BtnBack { get; }
+        public ImageButton BtnRight { get; }
+        public ImageButton BtnRightRight { get; }
+        public ImageButton BtnLeft { get; }
+        public ImageButton BtnLeftLeft { get; }
 
         public TitleBar(Page page, BarBtnEnum barBtn = BarBtnEnum.bbNone, BarAlignEnum barAlign = BarAlignEnum.baTop)
         {
             NavigationPage.SetHasNavigationBar(page, false);
             NavigationPage.SetHasBackButton(page, false);
-            page.Title = "";
-            page.Appearing += (s, e) => { NavigationPage.SetHasNavigationBar(page, false); };
-            page.Disappearing += (s, e) => { NavigationPage.SetHasNavigationBar(page, false); };
 
-            if ((Device.OS == TargetPlatform.iOS) && (barAlign == BarAlignEnum.baTop))
+            page.Title = string.Empty;
+            page.Appearing += (sender, args) => NavigationPage.SetHasNavigationBar(page, false);
+            page.Disappearing += (sender, args) => NavigationPage.SetHasNavigationBar(page, false);
+
+            if (Device.RuntimePlatform == Device.iOS && barAlign == BarAlignEnum.baTop)
                 PaddingBar = 20;
 
-            BackgroundColor = barColor;
+            BackgroundColor = _barColor;
             MinimumHeightRequest = HeightBar + PaddingBar;
             HeightRequest = HeightBar + PaddingBar;
-            appBar.BackgroundColor = barColor;
-            appBar.Padding = new Thickness(0, PaddingBar, 0, 0);
-            appBar.MinimumHeightRequest = HeightRequest;
-            appBar.HeightRequest = HeightRequest;
-            
-            boxPadding.BackgroundColor = barColor;
+
+            AppBar = new AbsoluteLayout
+            {
+                BackgroundColor = _barColor,
+                Padding = new Thickness(0, PaddingBar, 0, 0),
+                MinimumHeightRequest = HeightRequest,
+                HeightRequest = HeightRequest
+            };
 
             #region Title create
-            txtTitle = new Label 
+            TxtTitle = new Label 
             {
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 HorizontalOptions = LayoutOptions.CenterAndExpand
             };
-            AbsoluteLayout.SetLayoutFlags(txtTitle, AbsoluteLayoutFlags.PositionProportional);
-            AbsoluteLayout.SetLayoutBounds(txtTitle,
-                new Rectangle(0.5, 0.5, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize)
-            );
-            appBar.Children.Add(txtTitle);
+            SetLayoutFlags(TxtTitle, AbsoluteLayoutFlags.PositionProportional);
+            SetLayoutBounds(TxtTitle, new Rectangle(0.5, 0.5, AutoSize, AutoSize));
+            AppBar.Children.Add(TxtTitle);
             #endregion
 
             #region Panel for left buttons
             var stackLeftBtn = new StackLayout
             {
-                Padding = new Thickness (0),
+                Padding = new Thickness(0),
                 Spacing = 0,
                 Orientation = StackOrientation.Horizontal,
                 HorizontalOptions = LayoutOptions.Start
             };
             SetLayoutFlags(stackLeftBtn, AbsoluteLayoutFlags.PositionProportional);
-            SetLayoutBounds(stackLeftBtn,
-                new Rectangle(0, 0.5, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
-            appBar.Children.Add(stackLeftBtn);
+            SetLayoutBounds(stackLeftBtn, new Rectangle(0, 0.5, AutoSize, AutoSize));
+            AppBar.Children.Add(stackLeftBtn);
             #endregion
 
             #region Panel for right buttons
@@ -107,138 +108,129 @@ namespace ScnTitleBar.Forms
                 HorizontalOptions = LayoutOptions.End
             };
 
-            AbsoluteLayout.SetLayoutFlags(stackRightBtn, AbsoluteLayoutFlags.PositionProportional);
-            AbsoluteLayout.SetLayoutBounds(stackRightBtn,
-                new Rectangle(1, 0.5, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
-            appBar.Children.Add(stackRightBtn);
+            SetLayoutFlags(stackRightBtn, AbsoluteLayoutFlags.PositionProportional);
+            SetLayoutBounds(stackRightBtn, new Rectangle(1, 0.5, AutoSize, AutoSize));
+            AppBar.Children.Add(stackRightBtn);
             #endregion
 
             #region Back button
-            BtnBack = new BackImageButton(page);
-            BtnBack.WidthRequest = HeightBar;
-            BtnBack.HeightRequest = HeightBar;
+            BtnBack = new BackImageButton(page)
+            {
+                WidthRequest = HeightBar,
+                HeightRequest = HeightBar
+            };
 
             if ((barBtn & BarBtnEnum.bbBack) != 0)
                 stackLeftBtn.Children.Add(BtnBack);
             #endregion
 
             #region LeftLeft button
-            BtnLeftLeft = new ImageButton();
-            BtnLeftLeft.WidthRequest = HeightBar;
-            BtnLeftLeft.HeightRequest = HeightBar;
+            BtnLeftLeft = new ImageButton
+            {
+                WidthRequest = HeightBar,
+                HeightRequest = HeightBar
+            };
 
             if ((barBtn & BarBtnEnum.bbLeftLeft) != 0)
                 stackLeftBtn.Children.Add(BtnLeftLeft);
             #endregion
 
             #region Left button
-            BtnLeft = new ImageButton();
-            BtnLeft.WidthRequest = HeightBar;
-            BtnLeft.HeightRequest = HeightBar;
+            BtnLeft = new ImageButton
+            {
+                WidthRequest = HeightBar,
+                HeightRequest = HeightBar
+            };
 
-            if (((barBtn & BarBtnEnum.bbLeft) != 0) || ((barBtn & BarBtnEnum.bbLeftLeft) != 0))
+            if ((barBtn & BarBtnEnum.bbLeft) != 0 || (barBtn & BarBtnEnum.bbLeftLeft) != 0)
                 stackLeftBtn.Children.Add(BtnLeft);
             #endregion
 
             #region Right button
-            BtnRight = new ImageButton();
-            BtnRight.WidthRequest = HeightBar;
-            BtnRight.HeightRequest = HeightBar;
+            BtnRight = new ImageButton
+            {
+                WidthRequest = HeightBar,
+                HeightRequest = HeightBar
+            };
 
-            if (((barBtn & BarBtnEnum.bbRight) != 0) || ((barBtn & BarBtnEnum.bbRightRight) != 0))
+            if ((barBtn & BarBtnEnum.bbRight) != 0 || (barBtn & BarBtnEnum.bbRightRight) != 0)
                 stackRightBtn.Children.Add(BtnRight);
             #endregion
 
             #region RightRight button
-            BtnRightRight = new ImageButton();
-            BtnRightRight.WidthRequest = HeightBar;
-            BtnRightRight.HeightRequest = HeightBar;
+            BtnRightRight = new ImageButton
+            {
+                WidthRequest = HeightBar,
+                HeightRequest = HeightBar
+            };
 
             if ((barBtn & BarBtnEnum.bbRightRight) != 0)
                 stackRightBtn.Children.Add(BtnRightRight);
             #endregion
 
-            AbsoluteLayout.SetLayoutFlags(appBar, AbsoluteLayoutFlags.All);
-            AbsoluteLayout.SetLayoutBounds(appBar, new Rectangle(0f, 0f, 1f, 1f));
-            Children.Add(appBar);
-
-            if ((Device.OS == TargetPlatform.iOS) && (barAlign == BarAlignEnum.baTop))
-            {
-                AbsoluteLayout.SetLayoutFlags(boxPadding, AbsoluteLayoutFlags.PositionProportional);
-                AbsoluteLayout.SetLayoutBounds(boxPadding,
-                    new Rectangle(0, 0, 600, PaddingBar));
-                Children.Add(boxPadding);
-            }
+            SetLayoutFlags(AppBar, AbsoluteLayoutFlags.All);
+            SetLayoutBounds(AppBar, new Rectangle(0f, 0f, 1f, 1f));
+            Children.Add(AppBar);
         }
-
-        private AbsoluteLayout appBar = new AbsoluteLayout();
-        private BoxView boxPadding = new BoxView();
-        public BoxView BoxPadding { get { return boxPadding; } }
 
         #region Background color
-        private Color barColor = Color.White;
+
+        private Color _barColor = Color.White;
         public Color BarColor
         {
-            get { return barColor; }
+            get => _barColor;
             set
             {
-                barColor = value;
-                BackgroundColor = barColor;
-                appBar.BackgroundColor = barColor;
-                boxPadding.BackgroundColor = barColor;
+                _barColor = value;
+                BackgroundColor = _barColor;
+                AppBar.BackgroundColor = _barColor;
             }
         }
+
         #endregion
 
         #region Title
+
         public static readonly BindableProperty TitleProperty =
-            BindableProperty.Create<TitleBar, string>(p => p.Title, "");
+            BindableProperty.Create(nameof(Title), typeof(string), typeof(TitleBar));
 
         public string Title
         {
-            get { return (string)GetValue(TitleProperty); }
-            set { SetValue(TitleProperty, value); }
+            get => (string) GetValue(TitleProperty);
+            set => SetValue(TitleProperty, value);
         }
 
         public Style TitleStyle
         {
-            get { return txtTitle.Style; }
-            set { txtTitle.Style = value; }
+            get => TxtTitle.Style;
+            set => TxtTitle.Style = value;
         }
+
         #endregion
 
-        protected override void OnPropertyChanged(string propertyName)
+        protected override void OnPropertyChanged(string propertyName = null)
         {
             base.OnPropertyChanged(propertyName);
 
-            switch (propertyName)
-            {
-                case "Title":
-                    txtTitle.Text = Title;
-                    break;
-            }
+            if (propertyName == nameof(Title))
+                TxtTitle.Text = Title;
         }
-
-        private Label txtTitle;
-        public ImageButton BtnBack { get; private set; }
-        public ImageButton BtnRight { get;  private set; }
-        public ImageButton BtnRightRight { get; private set; }
-        public ImageButton BtnLeft { get; private set; }
-        public ImageButton BtnLeftLeft { get; private set; }
     
         private class BackImageButton : ImageButton
         {
-            private Page curPage;
-            public BackImageButton (Page page)
+            private readonly Page _page;
+
+            public BackImageButton(Page page)
             {
-                curPage = page;
+                _page = page;
             }
+
             public override void OnClick()
             {
                 base.OnClick();
 
-                if (curPage.Navigation.NavigationStack.Count > 0)
-                    curPage.Navigation.PopAsync(true);
+                if (_page.Navigation.NavigationStack.Count > 0)
+                    _page.Navigation.PopAsync(true);
             }
         }
     }

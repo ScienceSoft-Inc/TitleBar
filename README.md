@@ -29,16 +29,3 @@ How to use this control in Xamarin.Forms app
 - Control alignment - to be used only for renderer not for location on a page.
 
 You may find sample code of contral usage here: https://github.com/ScienceSoft-Inc/TitleBar/tree/master/ScnTitleBar/Sample/SampleTitleBar
-
-As well mind that if you want to have responsive buttons (vibrating on tap) then you need to initialize renderers for each platform.
-
-iOS:
-```cs
-Xamarin.Forms.Forms.Init ();
-ViewGesturesRenderer.Init();
-```
-Android:
-```cs
-Xamarin.Forms.Forms.Init (this, bundle);
-ViewGesturesRenderer.Init();
-```

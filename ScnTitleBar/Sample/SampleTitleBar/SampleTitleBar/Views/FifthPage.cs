@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ScnTitleBar.Forms;
 using Xamarin.Forms;
-using ScnTitleBar.Forms;
 
 namespace SampleTitleBar.Views
 {
@@ -10,11 +7,12 @@ namespace SampleTitleBar.Views
     {
         public FifthPage()
         {
-            var titleBar = new TitleBar(this, TitleBar.BarBtnEnum.bbBackRightRight);
-            titleBar.BarColor = Color.Gray;
-            titleBar.Title = "FIFTH";
+            var titleBar = new TitleBar(this, TitleBar.BarBtnEnum.bbBackRightRight)
+            {
+                BarColor = Color.Gray,
+                Title = "FIFTH"
+            };
 
-            titleBar.BtnBack.BackgroundColor = Color.Transparent;
             titleBar.BtnBack.Source = Device.OnPlatform("Icon/back.png", "ic_back.png", "Assets/Icon/back.png");
 
             var stackLayout = new StackLayout
@@ -22,7 +20,7 @@ namespace SampleTitleBar.Views
                 BackgroundColor = Color.Green,
                 Children = 
                 {
-                    titleBar,
+                    titleBar
                 }
             };
 

@@ -12,7 +12,6 @@
     <tags>title bar, app bar, xamarin, xamarin.forms, android, ios</tags>
     <dependencies>
       <dependency id="Xamarin.Forms" version="3.0.0.0" />
-      <dependency id="ScnViewGestures.Forms" version="1.4.0" />
     </dependencies>
   </metadata>
   <files>

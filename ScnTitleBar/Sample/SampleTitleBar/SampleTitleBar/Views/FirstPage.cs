@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ScnTitleBar.Forms;
 using Xamarin.Forms;
-using ScnTitleBar.Forms;
 
 namespace SampleTitleBar.Views
 {
@@ -10,29 +7,30 @@ namespace SampleTitleBar.Views
     {
         public FirstPage()
         {
-            var titleBar = new TitleBar(this, TitleBar.BarBtnEnum.bbLeftRight);
-            titleBar.BarColor = Color.Gray;
-            titleBar.Title = "FIRST";
+            var titleBar = new TitleBar(this, TitleBar.BarBtnEnum.bbLeftRight)
+            {
+                BarColor = Color.Gray,
+                Title = "FIRST"
+            };
 
-            titleBar.BtnLeft.BackgroundColor = Color.Transparent;
+            titleBar.BtnLeft.BackgroundColor = Color.Blue;
             titleBar.BtnLeft.Source = Device.OnPlatform("Icon/2.png", "ic_2.png", "Assets/Icon/2.png");
-            titleBar.BtnLeft.Click += async (s, e) => { await this.Navigation.PushAsync(new SecondPage()); };
+            titleBar.BtnLeft.Click += (sender, args) => Navigation.PushAsync(new SecondPage());
 
-            titleBar.BtnRight.BackgroundColor = Color.Transparent;
+            titleBar.BtnRight.BackgroundColor = Color.Blue;
             titleBar.BtnRight.Source = Device.OnPlatform("Icon/3.png", "ic_3.png", "Assets/Icon/3.png");
-            titleBar.BtnRight.Click += async (s, e) => { await this.Navigation.PushAsync(new ThirdPage()); };
+            titleBar.BtnRight.Click += (sender, args) => Navigation.PushAsync(new ThirdPage());
            
             var stackLayout = new StackLayout
             {
                 BackgroundColor = Color.Yellow,
                 Children = 
                 {
-                    titleBar,
+                    titleBar
                 }
             };
 
             Content = stackLayout;
         }
-
     }
 }
