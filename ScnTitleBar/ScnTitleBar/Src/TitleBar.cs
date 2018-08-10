@@ -43,8 +43,9 @@ namespace ScnTitleBar.Forms
 
         protected readonly int PaddingBar;
         protected readonly AbsoluteLayout AppBar;
-        protected readonly BoxView BoxPadding;
         protected readonly Label TxtTitle;
+
+        public BoxView BoxPadding { get; }
 
         public ImageButton BtnBack { get; }
         public ImageButton BtnRight { get; }
