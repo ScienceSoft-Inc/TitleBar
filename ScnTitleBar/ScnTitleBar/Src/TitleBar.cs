@@ -43,6 +43,7 @@ namespace ScnTitleBar.Forms
 
         protected readonly int PaddingBar;
         protected readonly AbsoluteLayout AppBar;
+        protected readonly BoxView BoxPadding;
         protected readonly Label TxtTitle;
 
         public ImageButton BtnBack { get; }
@@ -73,6 +74,11 @@ namespace ScnTitleBar.Forms
                 Padding = new Thickness(0, PaddingBar, 0, 0),
                 MinimumHeightRequest = HeightRequest,
                 HeightRequest = HeightRequest
+            };
+
+            BoxPadding = new BoxView
+            {
+                BackgroundColor = _barColor
             };
 
             #region Title create
@@ -171,6 +177,14 @@ namespace ScnTitleBar.Forms
             SetLayoutFlags(AppBar, AbsoluteLayoutFlags.All);
             SetLayoutBounds(AppBar, new Rectangle(0f, 0f, 1f, 1f));
             Children.Add(AppBar);
+
+            if (Device.RuntimePlatform == Device.iOS && barAlign == BarAlignEnum.baTop)
+            {
+                SetLayoutFlags(BoxPadding,
+                    AbsoluteLayoutFlags.PositionProportional | AbsoluteLayoutFlags.WidthProportional);
+                SetLayoutBounds(BoxPadding, new Rectangle(0f, 0f, 1f, PaddingBar));
+                Children.Add(BoxPadding);
+            }
         }
 
         #region Background color
@@ -182,8 +196,9 @@ namespace ScnTitleBar.Forms
             set
             {
                 _barColor = value;
-                BackgroundColor = _barColor;
-                AppBar.BackgroundColor = _barColor;
+                BackgroundColor = value;
+                AppBar.BackgroundColor = value;
+                BoxPadding.BackgroundColor = value;
             }
         }
 
