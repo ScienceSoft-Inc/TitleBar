@@ -10,7 +10,12 @@ namespace SampleTitleBar.Views
             var titleBar = new TitleBar(this, TitleBar.BarBtnEnum.bbLeftRight)
             {
                 BarColor = Color.Gray,
-                Title = "FIRST"
+                Content = new SearchBar
+                {
+                    VerticalOptions = LayoutOptions.Center,
+                    HeightRequest = 30,
+                    Placeholder = "Search text..."
+                }
             };
 
             titleBar.BtnLeft.BackgroundColor = Color.Blue;

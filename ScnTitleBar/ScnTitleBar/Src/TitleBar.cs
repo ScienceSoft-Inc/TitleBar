@@ -42,7 +42,8 @@ namespace ScnTitleBar.Forms
         public int HeightBar = 48;
 
         protected readonly int PaddingBar;
-        protected readonly AbsoluteLayout AppBar;
+        protected readonly StackLayout AppBar;
+        protected readonly ContentView ContentView;
         protected readonly Label TxtTitle;
 
         public BoxView BoxPadding { get; }
@@ -52,6 +53,12 @@ namespace ScnTitleBar.Forms
         public ImageButton BtnRightRight { get; }
         public ImageButton BtnLeft { get; }
         public ImageButton BtnLeftLeft { get; }
+
+        public View Content
+        {
+            get => ContentView.Content;
+            set => ContentView.Content = value;
+        }
 
         public TitleBar(Page page, BarBtnEnum barBtn = BarBtnEnum.bbNone, BarAlignEnum barAlign = BarAlignEnum.baTop)
         {
@@ -69,31 +76,13 @@ namespace ScnTitleBar.Forms
             MinimumHeightRequest = HeightBar + PaddingBar;
             HeightRequest = HeightBar + PaddingBar;
 
-            AppBar = new AbsoluteLayout
-            {
-                BackgroundColor = _barColor,
-                Padding = new Thickness(0, PaddingBar, 0, 0),
-                MinimumHeightRequest = HeightRequest,
-                HeightRequest = HeightRequest
-            };
-
             BoxPadding = new BoxView
             {
                 BackgroundColor = _barColor
             };
 
-            #region Title create
-            TxtTitle = new Label 
-            {
-                VerticalOptions = LayoutOptions.CenterAndExpand,
-                HorizontalOptions = LayoutOptions.CenterAndExpand
-            };
-            SetLayoutFlags(TxtTitle, AbsoluteLayoutFlags.PositionProportional);
-            SetLayoutBounds(TxtTitle, new Rectangle(0.5, 0.5, AutoSize, AutoSize));
-            AppBar.Children.Add(TxtTitle);
-            #endregion
-
             #region Panel for left buttons
+
             var stackLeftBtn = new StackLayout
             {
                 Padding = new Thickness(0),
@@ -101,12 +90,11 @@ namespace ScnTitleBar.Forms
                 Orientation = StackOrientation.Horizontal,
                 HorizontalOptions = LayoutOptions.Start
             };
-            SetLayoutFlags(stackLeftBtn, AbsoluteLayoutFlags.PositionProportional);
-            SetLayoutBounds(stackLeftBtn, new Rectangle(0, 0.5, AutoSize, AutoSize));
-            AppBar.Children.Add(stackLeftBtn);
+
             #endregion
 
             #region Panel for right buttons
+
             var stackRightBtn = new StackLayout
             {
                 Padding = new Thickness(0),
@@ -114,10 +102,7 @@ namespace ScnTitleBar.Forms
                 Orientation = StackOrientation.Horizontal,
                 HorizontalOptions = LayoutOptions.End
             };
-
-            SetLayoutFlags(stackRightBtn, AbsoluteLayoutFlags.PositionProportional);
-            SetLayoutBounds(stackRightBtn, new Rectangle(1, 0.5, AutoSize, AutoSize));
-            AppBar.Children.Add(stackRightBtn);
+            
             #endregion
 
             #region Back button
@@ -175,9 +160,44 @@ namespace ScnTitleBar.Forms
                 stackRightBtn.Children.Add(BtnRightRight);
             #endregion
 
+            #region Title
+
+            TxtTitle = new Label
+            {
+                VerticalOptions = LayoutOptions.Center,
+                HorizontalOptions = LayoutOptions.Center
+            };
+
+            ContentView = new ContentView
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+
+            #endregion
+
+            AppBar = new StackLayout
+            {
+                Orientation = StackOrientation.Horizontal,
+                BackgroundColor = _barColor,
+                Padding = new Thickness(0, PaddingBar, 0, 0),
+                Spacing = 0,
+                MinimumHeightRequest = HeightRequest,
+                HeightRequest = HeightRequest,
+                Children =
+                {
+                    stackLeftBtn,
+                    ContentView,
+                    stackRightBtn
+                }
+            };
+
             SetLayoutFlags(AppBar, AbsoluteLayoutFlags.All);
             SetLayoutBounds(AppBar, new Rectangle(0f, 0f, 1f, 1f));
             Children.Add(AppBar);
+
+            SetLayoutFlags(TxtTitle, AbsoluteLayoutFlags.PositionProportional);
+            SetLayoutBounds(TxtTitle, new Rectangle(0.5, 0.5, AutoSize, AutoSize));
+            Children.Add(TxtTitle);
 
             if (Device.RuntimePlatform == Device.iOS && barAlign == BarAlignEnum.baTop)
             {
