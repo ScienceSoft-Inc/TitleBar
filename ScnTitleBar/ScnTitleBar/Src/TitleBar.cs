@@ -54,12 +54,6 @@ namespace ScnTitleBar.Forms
         public ImageButton BtnLeft { get; }
         public ImageButton BtnLeftLeft { get; }
 
-        public View Content
-        {
-            get => ContentView.Content;
-            set => ContentView.Content = value;
-        }
-
         public TitleBar(Page page, BarBtnEnum barBtn = BarBtnEnum.bbNone, BarAlignEnum barAlign = BarAlignEnum.baTop)
         {
             NavigationPage.SetHasNavigationBar(page, false);
@@ -164,8 +158,7 @@ namespace ScnTitleBar.Forms
 
             TxtTitle = new Label
             {
-                VerticalOptions = LayoutOptions.Center,
-                HorizontalOptions = LayoutOptions.Center
+                Margin = new Thickness(0, PaddingBar, 0, 0)
             };
 
             ContentView = new ContentView
@@ -244,12 +237,32 @@ namespace ScnTitleBar.Forms
 
         #endregion
 
+        #region Content
+
+        public static readonly BindableProperty ContentProperty =
+            BindableProperty.Create(nameof(Content), typeof(View), typeof(TitleBar));
+
+        public View Content
+        {
+            get => (View) GetValue(ContentProperty);
+            set => SetValue(ContentProperty, value);
+        }
+
+        #endregion
+
         protected override void OnPropertyChanged(string propertyName = null)
         {
             base.OnPropertyChanged(propertyName);
 
-            if (propertyName == nameof(Title))
-                TxtTitle.Text = Title;
+            switch (propertyName)
+            {
+                case nameof(Title):
+                    TxtTitle.Text = Title;
+                    break;
+                case nameof(Content):
+                    ContentView.Content = Content;
+                    break;
+            }
         }
     }
 }
