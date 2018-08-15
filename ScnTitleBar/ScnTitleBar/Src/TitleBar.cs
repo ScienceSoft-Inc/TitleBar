@@ -89,6 +89,8 @@ namespace ScnTitleBar.Forms
             NavigationPage.SetHasBackButton(page, false);
 
             page.Title = string.Empty;
+            page.Appearing += (sender, args) => NavigationPage.SetHasNavigationBar(page, false);
+            page.Disappearing += (sender, args) => NavigationPage.SetHasNavigationBar(page, false);
 
             HeightBar = 48;
             BackgroundColor = _barColor;
