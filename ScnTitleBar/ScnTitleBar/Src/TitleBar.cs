@@ -39,9 +39,30 @@ namespace ScnTitleBar.Forms
             baBottom = 1
         }
 
-        public int HeightBar = 48;
+        public double HeightBar
+        {
+            get => HeightRequest;
+            set => HeightRequest = value;
+        }
 
-        protected readonly int PaddingBar;
+        private double _paddingBar;
+        protected double PaddingBar
+        {
+            get => _paddingBar;
+            set
+            {
+                _paddingBar = value;
+                OnPropertyChanged();
+
+                if (IsTopiOS)
+                {
+                    SetLayoutFlags(BoxPadding,
+                        AbsoluteLayoutFlags.XProportional | AbsoluteLayoutFlags.WidthProportional);
+                    SetLayoutBounds(BoxPadding, new Rectangle(0f, -value, 1f, value));
+                }
+            }
+        }
+
         protected readonly StackLayout AppBar;
         protected readonly ContentView ContentView;
         protected readonly Label TxtTitle;
@@ -54,21 +75,23 @@ namespace ScnTitleBar.Forms
         public ImageButton BtnLeft { get; }
         public ImageButton BtnLeftLeft { get; }
 
+        public BarBtnEnum BarBtn { get; protected set; }
+        public BarAlignEnum BarAlign { get; protected set; }
+
+        public bool IsTopiOS => Device.RuntimePlatform == Device.iOS && BarAlign == BarAlignEnum.baTop;
+
         public TitleBar(Page page, BarBtnEnum barBtn = BarBtnEnum.bbNone, BarAlignEnum barAlign = BarAlignEnum.baTop)
         {
+            BarBtn = barBtn;
+            BarAlign = barAlign;
+
             NavigationPage.SetHasNavigationBar(page, false);
             NavigationPage.SetHasBackButton(page, false);
 
             page.Title = string.Empty;
-            page.Appearing += (sender, args) => NavigationPage.SetHasNavigationBar(page, false);
-            page.Disappearing += (sender, args) => NavigationPage.SetHasNavigationBar(page, false);
 
-            if (Device.RuntimePlatform == Device.iOS && barAlign == BarAlignEnum.baTop)
-                PaddingBar = 20;
-
+            HeightBar = 48;
             BackgroundColor = _barColor;
-            MinimumHeightRequest = HeightBar + PaddingBar;
-            HeightRequest = HeightBar + PaddingBar;
 
             BoxPadding = new BoxView
             {
@@ -79,7 +102,7 @@ namespace ScnTitleBar.Forms
 
             var stackLeftBtn = new StackLayout
             {
-                Padding = new Thickness(0),
+                Padding = 0,
                 Spacing = 0,
                 Orientation = StackOrientation.Horizontal,
                 HorizontalOptions = LayoutOptions.Start
@@ -91,7 +114,7 @@ namespace ScnTitleBar.Forms
 
             var stackRightBtn = new StackLayout
             {
-                Padding = new Thickness(0),
+                Padding = 0,
                 Spacing = 0,
                 Orientation = StackOrientation.Horizontal,
                 HorizontalOptions = LayoutOptions.End
@@ -156,10 +179,7 @@ namespace ScnTitleBar.Forms
 
             #region Title
 
-            TxtTitle = new Label
-            {
-                Margin = new Thickness(0, PaddingBar, 0, 0)
-            };
+            TxtTitle = new Label();
 
             ContentView = new ContentView
             {
@@ -172,10 +192,7 @@ namespace ScnTitleBar.Forms
             {
                 Orientation = StackOrientation.Horizontal,
                 BackgroundColor = _barColor,
-                Padding = new Thickness(0, PaddingBar, 0, 0),
                 Spacing = 0,
-                MinimumHeightRequest = HeightRequest,
-                HeightRequest = HeightRequest,
                 Children =
                 {
                     stackLeftBtn,
@@ -192,11 +209,18 @@ namespace ScnTitleBar.Forms
             SetLayoutBounds(TxtTitle, new Rectangle(0.5, 0.5, AutoSize, AutoSize));
             Children.Add(TxtTitle);
 
-            if (Device.RuntimePlatform == Device.iOS && barAlign == BarAlignEnum.baTop)
+            if (IsTopiOS)
             {
-                SetLayoutFlags(BoxPadding,
-                    AbsoluteLayoutFlags.PositionProportional | AbsoluteLayoutFlags.WidthProportional);
-                SetLayoutBounds(BoxPadding, new Rectangle(0f, 0f, 1f, PaddingBar));
+                page.PropertyChanged += (sender, args) =>
+                {
+                    if (args.PropertyName == Page.PaddingProperty.PropertyName)
+                        PaddingBar = page.Padding.Top;
+                };
+
+                _paddingBar = page.Padding.Top;
+
+                SetLayoutFlags(BoxPadding, AbsoluteLayoutFlags.XProportional | AbsoluteLayoutFlags.WidthProportional);
+                SetLayoutBounds(BoxPadding, new Rectangle(0f, -_paddingBar, 1f, _paddingBar));
                 Children.Add(BoxPadding);
             }
         }

@@ -7,6 +7,11 @@ namespace SampleTitleBar.Views
     {
         public SecondPage()
         {
+            BackgroundColor = Color.Green;
+
+            //if not using On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+            Padding = Device.RuntimePlatform == Device.iOS ? new Thickness(0, 20, 0, 0) : 0;
+
             var titleBar = new TitleBar(this, TitleBar.BarBtnEnum.bbBackLeftRightRight)
             {
                 BarColor = Color.Gray,
@@ -26,7 +31,6 @@ namespace SampleTitleBar.Views
 
             var stackLayout = new StackLayout
             {
-                BackgroundColor = Color.Green,
                 Children = 
                 {
                     titleBar

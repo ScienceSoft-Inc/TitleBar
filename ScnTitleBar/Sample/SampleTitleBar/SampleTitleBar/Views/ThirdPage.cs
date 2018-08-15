@@ -1,5 +1,6 @@
 ﻿using ScnTitleBar.Forms;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace SampleTitleBar.Views
 {
@@ -7,6 +8,10 @@ namespace SampleTitleBar.Views
     {
         public ThirdPage()
         {
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+
+            BackgroundColor = Color.Blue;
+
             var titleBarTop = new TitleBar(this, TitleBar.BarBtnEnum.bbBack)
             {
                 BarColor = Color.Gray,
@@ -27,10 +32,7 @@ namespace SampleTitleBar.Views
             titleBarBottom.BtnRight.Source = Device.OnPlatform("Icon/5.png", "ic_5.png", "Assets/Icon/5.png");
             titleBarBottom.BtnRight.Click += (sender, args) => Navigation.PushAsync(new FifthPage());
 
-            var relativeLayout = new RelativeLayout
-            { 
-                BackgroundColor = Color.Blue
-            };
+            var relativeLayout = new RelativeLayout();
 
             relativeLayout.Children.Add(titleBarTop,
                 Constraint.Constant(0),

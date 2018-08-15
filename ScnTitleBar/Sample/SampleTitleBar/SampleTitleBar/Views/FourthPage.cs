@@ -1,5 +1,6 @@
 ﻿using ScnTitleBar.Forms;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace SampleTitleBar.Views
 {
@@ -7,6 +8,10 @@ namespace SampleTitleBar.Views
     {
         public FourthPage()
         {
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+
+            BackgroundColor = Color.Green;
+
             var titleBar = new TitleBar(this, TitleBar.BarBtnEnum.bbBackRightRight)
             {
                 BarColor = Color.Gray,
@@ -17,7 +22,6 @@ namespace SampleTitleBar.Views
 
             var stackLayout = new StackLayout
             {
-                BackgroundColor = Color.Green,
                 Children = 
                 {
                     titleBar
