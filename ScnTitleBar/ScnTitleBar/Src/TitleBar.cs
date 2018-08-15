@@ -42,7 +42,11 @@ namespace ScnTitleBar.Forms
         public double HeightBar
         {
             get => HeightRequest;
-            set => HeightRequest = value;
+            set
+            {
+                HeightRequest = value;
+                MinimumHeightRequest = value;
+            }
         }
 
         private double _paddingBar;
