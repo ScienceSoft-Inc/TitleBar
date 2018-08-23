@@ -58,7 +58,7 @@ namespace ScnTitleBar.Forms
                 _paddingBar = value;
                 OnPropertyChanged();
 
-                if (IsTopiOS)
+                if (IsTopSafeArea)
                 {
                     SetLayoutFlags(BoxPadding,
                         AbsoluteLayoutFlags.XProportional | AbsoluteLayoutFlags.WidthProportional);
@@ -82,7 +82,7 @@ namespace ScnTitleBar.Forms
         public BarBtnEnum BarBtn { get; protected set; }
         public BarAlignEnum BarAlign { get; protected set; }
 
-        public bool IsTopiOS => Device.RuntimePlatform == Device.iOS && BarAlign == BarAlignEnum.baTop;
+        public bool IsTopSafeArea => BarAlign == BarAlignEnum.baTop;
 
         public TitleBar(Page page, BarBtnEnum barBtn = BarBtnEnum.bbNone, BarAlignEnum barAlign = BarAlignEnum.baTop)
         {
@@ -215,7 +215,7 @@ namespace ScnTitleBar.Forms
             SetLayoutBounds(TxtTitle, new Rectangle(0.5, 0.5, AutoSize, AutoSize));
             Children.Add(TxtTitle);
 
-            if (IsTopiOS)
+            if (IsTopSafeArea)
             {
                 page.PropertyChanged += (sender, args) =>
                 {
